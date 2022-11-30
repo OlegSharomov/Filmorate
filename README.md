@@ -1,57 +1,18 @@
-# filmorate
+# Filmorate
 Template repository for Filmorate project.        
+
+Фильмов много — и с каждым годом становится всё больше. Чем их больше, тем больше разных оценок. Чем больше оценок, тем сложнее сделать выбор. Однако не время сдаваться! 
+
+У вас есть возможность воспользоваться мини социальной сетью, которая поможет выбрать кино на основе того, какие фильмы вы и ваши друзья смотрите, какие оценки им ставите, а также возвращать лучшие фильмы, рекомендованные к просмотру. Теперь ни вам, ни вашим друзьям не придётся долго размышлять, что посмотреть вечером.
+
+### *Функциональность:*
+Здесь вы можете заводить друзей, просматривать популярные фильмы, выбирать фильмы по жанрам и ассоциациям кинокомпаний, по возрастным ограничениям, ставить фильмам лайки и др.
+
+### *Структура:*
+REST приложение "Кинопоиск для своих" со встроенной базой данных H2. Взаимодействие с БД происходит благодаря JdbcTempalte.
+
+
+### *Стек:*
+Java 11, Spring Boot, JDBC, H2, Maven, JUnit, Lombok, Slf4j.
+
 ![Database schema](https://github.com/OlegSharomov/filmorate/blob/main/images/QuickDBD-Free%20Diagram.png)        
-Вы можете воспроизвести у себя эту базу данных, вставив текст из пояснений
-на странице: https://app.quickdatabasediagrams.com/
-
-Пояснения по базе данных:
-
-### users  
-*--*  
-user_id PK bigint  
-user_name varchar(255)  
-user_login varchar(255)  
-user_email varchar(255)  
-user_birthday date    
-  
-#friendship_list - отношение многие ко многим  
-#оба поля ссылаются как FK на поле user_id таблицы users  
-### friendship_list
-*--*  
-user_id PK bigint FK >- users.user_id  
-friend_id PK bigint FK >- users.user_id  
-status varchar(63)  
-
-### likes
-*--*  
-film_id PK bigint  FK >- films.film_id  
-user_like PK bigint FK >- users.user_id  
-
-### films
-*--*  
-film_id PK bigint  
-film_name varchar(255)  
-film_description varchar(200)  
-film_release_date date  
-film_duration int  
-mpa_id int FK >- film_mpa.mpa_id  
-rating real
-
-#film_mpa - отношение один ко многим  
-#вынесена в отдельную таблицу, что бы не было  
-#возможности потери информации и для легкости дальнейшего исправления  
-### film_mpa
-*--*  
-mpa_id PK int  
-mpa_name varchar(5)  
-
-#genre - отношение многие ко многим через таблицу film_genre  
-### genre
-*--*  
-genre_id PK int  
-genre_name varchar(63)  
-
-### film_genre
-*--*  
-film_id PK bigint FK >- films.film_id  
-genre_id PK int FK >- genre.genre_id  

@@ -11,6 +11,8 @@ Template repository for Filmorate project.
 ### *Структура:*
 REST приложение "Кинопоиск для своих" со встроенной базой данных H2. Взаимодействие с БД происходит благодаря JdbcTempalte.
 
+### *Запуск:*
+Для запуска запустите файл run.bat. Для остановки приложения в открывшейся консоли нажмите ctrl=c / cmd=c
 
 ### *Стек:*
 Java 11, Spring Boot, JDBC, H2, Maven, JUnit, Lombok, Slf4j.
